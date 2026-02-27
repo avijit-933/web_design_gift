@@ -1,3 +1,18 @@
 from django.shortcuts import render
 
-# Create your views here.
+def index(request):
+    return render(request, 'index.html')
+
+def login(request):
+    
+    return render(request, 'login.html')
+def register(request):
+    return render(request, 'register.html')
+def student_dashboard(request):
+    return render(request, 'student_dashboard.html')
+def courses(request):
+    return render(request, 'courses.html')
+def couse_list(request):
+    return render(request,'couse_list.html')
+def admin1(request):
+    return render(request,'admin1.html')

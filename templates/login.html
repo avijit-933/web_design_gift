@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E‑Learning · AI Chatbot | Split auth</title>
+  <!-- Google Fonts: clean sans-serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free) for social icons & simple icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #f8faff 0%, #f0f5fd 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      margin: 0;
+    }
+
+    /* main card – glassmorphism + soft shadow */
+    .auth-split {
+      max-width: 1100px;
+      width: 100%;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0,20,50,0.15), 0 4px 18px 0 rgba(255,255,255,0.5) inset;
+      display: flex;
+      flex-wrap: wrap;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+
+    /* left panel – forms */
+    .form-panel {
+      flex: 1 1 400px;
+      padding: 2.8rem 2.5rem;
+      background: transparent;
+    }
+
+    .logo-tag {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #1d2b4e;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-tag i {
+      color: #4f7df3;
+      font-size: 2rem;
+    }
+
+    /* pill toggle */
+    .toggle-tabs {
+      display: inline-flex;
+      background: rgba(235, 241, 255, 0.7);
+      border-radius: 60px;
+      padding: 5px;
+      margin-bottom: 2.2rem;
+      border: 1px solid rgba(255,255,255,0.6);
+      backdrop-filter: blur(4px);
+    }
+    .toggle-tab {
+      padding: 0.6rem 2.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #3a4d6e;
+      background: transparent;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: -0.01em;
+    }
+    .toggle-tab.active {
+      background: white;
+      box-shadow: 0 6px 14px rgba(79,125,243,0.18);
+      color: #1f2b48;
+    }
+
+    /* forms container */
+    .form-container {
+      margin-top: 1rem;
+    }
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .hidden-form {
+      display: none;
+    }
+
+    /* elegant thin-bordered inputs */
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .input-group label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #2b3a5a;
+      letter-spacing: -0.2px;
+      margin-left: 6px;
+    }
+    .input-group input {
+      padding: 0.85rem 1.2rem;
+      border: 1px solid rgba(160, 180, 210, 0.3);
+      border-radius: 18px;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(2px);
+      outline: none;
+      transition: all 0.15s;
+      font-weight: 400;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+    }
+    .input-group input:focus {
+      border-color: #7e9ef5;
+      background: white;
+      box-shadow: 0 4px 14px rgba(79,125,243,0.15);
+    }
+    .input-group input::placeholder {
+      color: #a3b5d1;
+      font-weight: 300;
+      font-size: 0.95rem;
+    }
+
+    /* extra row (remember / forgot) */
+    .form-extra {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      color: #3f4f72;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .checkbox-label input[type="checkbox"] {
+      accent-color: #4f7df3;
+      width: 18px;
+      height: 18px;
+    }
+    .forgot-link {
+      color: #4f7df3;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #b3c7fd;
+    }
+
+    /* primary CTA button */
+    .btn-primary {
+      background: #4f7df3;
+      border: none;
+      padding: 1rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 10px 20px -8px rgba(79,125,243,0.4);
+      border: 1px solid rgba(255,255,255,0.3);
+      margin-top: 0.6rem;
+    }
+    .btn-primary:hover {
+      background: #3d64d0;
+      box-shadow: 0 14px 24px -8px #3d64d0;
+    }
+
+    /* muted secondary button (for demo toggle between forms) */
+    .btn-secondary-muted {
+      background: rgba(235, 242, 255, 0.7);
+      border: 1px solid rgba(255,255,255,0.7);
+      padding: 0.9rem;
+      border-radius: 40px;
+      font-weight: 500;
+      color: #2f3f64;
+      backdrop-filter: blur(2px);
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+    .btn-secondary-muted:hover {
+      background: rgba(215, 230, 255, 0.9);
+    }
+
+    /* social login icons */
+    .social-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #7d90b0;
+      font-size: 0.9rem;
+      margin: 0.5rem 0 0.8rem;
+    }
+    .social-divider hr {
+      flex: 1;
+      border: none;
+      border-top: 1px solid rgba(140, 165, 200, 0.3);
+    }
+    .social-icons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .social-icons a {
+      color: #4e6586;
+      background: rgba(255,255,255,0.5);
+      width: 46px;
+      height: 46px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      border: 1px solid rgba(255,255,255,0.8);
+      backdrop-filter: blur(2px);
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .social-icons a:hover {
+      background: white;
+      color: #2b3a5a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px -6px #98b0e0;
+    }
+
+    /* right lifestyle image panel */
+    .image-panel {
+      flex: 1 1 380px;
+      background: linear-gradient(145deg, #2f4459, #121f33), url('https://placecats.com/600/800?random=1');
+      background-size: cover;
+      background-position: 40% 20%;
+      background-blend-mode: overlay;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 2.5rem 2rem;
+      color: white;
+      min-height: 340px;
+    }
+    /* dark overlay simulated via background blend + pseudo */
+    .image-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(10, 20, 40, 0.35);
+      z-index: 1;
+    }
+    .testimonial-card {
+      position: relative;
+      z-index: 3;
+      background: rgba(20, 30, 45, 0.3);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 28px;
+      padding: 1.8rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 18px 30px -12px rgba(0,0,0,0.4);
+      width: 100%;
+    }
+    .testimonial-card i {
+      font-size: 2rem;
+      opacity: 0.8;
+      margin-bottom: 0.8rem;
+      color: #d3e2ff;
+    }
+    .testimonial-card p {
+      font-size: 1.3rem;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .testimonial-author {
+      margin-top: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .testimonial-author span {
+      opacity: 0.8;
+      font-weight: 300;
+      font-size: 0.9rem;
+    }
+
+    /* high whitespace & responsive */
+    @media (max-width: 800px) {
+      .form-panel { padding: 2rem 1.8rem; }
+      .toggle-tab { padding: 0.5rem 1.5rem; }
+    }
+    @media (max-width: 650px) {
+      .auth-split { border-radius: 2rem; }
+    }
+
+    /* simple javascript hint */
+    .footnote {
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: 2rem;
+      color: #7f91b1;
+    }
+    hr {
+      border: 0.5px solid rgba(150, 175, 215, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-split">
+    <!-- LEFT: FORMS (glass card) -->
+    <div class="form-panel">
+      <div class="logo-tag">
+        <i class="fas fa-robot"></i> LearnBot AI
+      </div>
+
+      <!-- pill toggle tabs (Login / Register) -->
+      <div class="toggle-tabs" id="toggleTabs">
+        <button class="toggle-tab active" id="tabLogin">Log in</button>
+        <button class="toggle-tab" id="tabRegister">Sign up</button>
+      </div>
+
+      <!-- LOGIN FORM (initially visible) -->
+      <div class="form-container" id="loginFormContainer">
+        <form class="auth-form" id="loginForm" onsubmit="event.preventDefault(); alert('Login demo — no actual submission.');">
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" placeholder="student@elearning.com" required>
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input type="password" placeholder="••••••••" required>
+          </div>
+
+          <div class="form-extra">
+            <label class="checkbox-label">
+              <input type="checkbox" checked> <span>Keep me signed in</span>
+            </label>
+            <a href="#" class="forgot-link">Forgot?</a>
+          </div>
+
+          <button class="btn-primary" type="submit"><i class="fas fa-arrow-right-to-bracket" style="margin-right: 8px;"></i> Log in</button>
+
+          <!-- secondary muted button (just for style) -->
+          <button class="btn-secondary-muted" type="button" onclick="document.getElementById('tabRegister').click()">
+            <i class="fa-regular fa-pen-to-square"></i> Create new account
+          </button>
+
+          <div class="social-divider">
+            <hr> <span>or</span> <hr>
+          </div>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-google"></i></a>
+            <a href="#"><i class="fab fa-microsoft"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </form>
+      </div>
+
+      <!-- REGISTER FORM (hidden by default) -->
+      <div class="form-container hidden-form" id="registerFormContainer">
+        <form class="auth-form" id="registerForm" onsubmit="event.preventDefault(); alert('Signup demo — no actual submission.');">
+          <div class="input-group">
+            <label>Full name</label>
+            <input type="text" placeholder="Alex Rivera" required>
+          </div>
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" placeholder="alex@elearn.ai" required>
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input type="password" placeholder="at least 8 characters" required>
+          </div>
+          <div class="input-group">
+            <label>Confirm password</label>
+            <input type="password" placeholder="••••••••" required>
+          </div>
+
+          <div class="form-extra">
+            <label class="checkbox-label">
+              <input type="checkbox" required> <span>I agree to the terms</span>
+            </label>
+          </div>
+
+          <button class="btn-primary" type="submit"><i class="fas fa-user-plus" style="margin-right: 8px;"></i> Register</button>
+
+          <!-- secondary button to switch back -->
+          <button class="btn-secondary-muted" type="button" onclick="document.getElementById('tabLogin').click()">
+            <i class="fa-regular fa-arrow-left-to-bracket"></i> Back to login
+          </button>
+
+          <div class="social-divider">
+            <hr> <span>or</span> <hr>
+          </div>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-google"></i></a>
+            <a href="#"><i class="fab fa-microsoft"></i></a>
+            <a href="#"><i class="fab fa-apple"></i></a>
+          </div>
+        </form>
+      </div>
+      <!-- subtle whitespace footnote -->
+      <div class="footnote">✨ secure • seamless • AI‑ready</div>
+    </div>
+
+    <!-- RIGHT: LIFESTYLE PANEL with testimonial overlay -->
+    <div class="image-panel">
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left"></i>
+        <p>The AI chatbot helped me grasp complex topics in minutes. Seamless and intuitive.</p>
+        <div class="testimonial-author">
+          <i class="fas fa-user-circle" style="font-size: 2rem;"></i> 
+          <div>— Samira Chen <span>Data science learner</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Simple JavaScript to toggle between Login / Register (two files feel) -->
+  <script>
+    (function() {
+      const tabLogin = document.getElementById('tabLogin');
+      const tabRegister = document.getElementById('tabRegister');
+      const loginContainer = document.getElementById('loginFormContainer');
+      const registerContainer = document.getElementById('registerFormContainer');
+
+      function setActiveForm(showLogin) {
+        if (showLogin) {
+          tabLogin.classList.add('active');
+          tabRegister.classList.remove('active');
+          loginContainer.classList.remove('hidden-form');
+          registerContainer.classList.add('hidden-form');
+        } else {
+          tabRegister.classList.add('active');
+          tabLogin.classList.remove('active');
+          registerContainer.classList.remove('hidden-form');
+          loginContainer.classList.add('hidden-form');
+        }
+      }
+
+      tabLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveForm(true);
+      });
+
+      tabRegister.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveForm(false);
+      });
+
+      // ensure the toggle works even if page loads with hash etc
+      // default: login active already
+    })();
+  </script>
+
+  <!-- small extra for responsive design: ensure right panel is nice -->
+</body>
+</html>

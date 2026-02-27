@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Courses — LearnSphere</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="page-courses">
+{% comment %} <nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><span class="logo-icon"><i class="fas fa-brain"></i></span><span>Learn<strong>Sphere</strong></span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html" class="active">Courses</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="help.html">Help</a></li>
+      <li><a href="login.html" class="btn-outline-nav">Login</a></li>
+      <li><a href="register.html" class="btn-primary-nav">Sign Up</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav> {% endcomment %}
+
+<div class="page-hero-mini">
+  <div class="container">
+    <h1>Explore <span class="gradient-text">All Courses</span></h1>
+    <p>Discover 200+ expert-crafted courses to advance your career</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="courses-toolbar">
+      <div class="search-bar-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" id="courseSearch" placeholder="Search courses, topics, instructors..."/>
+      </div>
+      <div class="filter-buttons" id="filterBtns">
+        <button class="filter-btn active" data-cat="all">All</button>
+        <button class="filter-btn" data-cat="programming">Programming</button>
+        <button class="filter-btn" data-cat="design">Design</button>
+        <button class="filter-btn" data-cat="data-science">Data Science</button>
+        <button class="filter-btn" data-cat="business">Business</button>
+        <button class="filter-btn" data-cat="marketing">Marketing</button>
+      </div>
+    </div>
+    <div class="courses-results-info" id="resultsInfo">Showing all courses</div>
+    <div class="courses-grid large" id="coursesGrid"><!-- Injected by JS --></div>
+    <div class="no-results hidden" id="noResults">
+      <i class="fas fa-search-minus"></i>
+      <p>No courses found matching your criteria</p>
+      <button onclick="resetFilters()" class="btn btn-primary">Reset Filters</button>
+    </div>
+  </div>
+</section>
+
+<!-- Chatbot -->
+<div class="chatbot-container" id="chatbot">
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div class="chatbot-info"><div class="bot-avatar"><i class="fas fa-robot"></i></div><div><strong>Aria</strong><small>AI Learning Assistant</small></div></div>
+      <button class="chatbot-close" id="closeChatbot"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="msg bot-msg"><div class="msg-bubble">Need help finding a course? Just ask! 📚</div></div>
+    </div>
+    <div class="chatbot-suggestions" id="chatSuggestions">
+      <button class="suggestion-btn" data-q="What courses do you recommend?">📚 Recommendations</button>
+      <button class="suggestion-btn" data-q="What is the best programming course?">💻 Best programming course</button>
+    </div>
+    <div class="chatbot-input-area">
+      <input type="text" id="chatInput" placeholder="Ask Aria anything..."/>
+      <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+  <button class="chatbot-toggle" id="chatbotToggle">
+    <i class="fas fa-robot" id="chatIconOpen"></i>
+    <i class="fas fa-times" id="chatIconClose" style="display:none"></i>
+  </button>
+</div>
+
+<footer class="footer">
+  <div class="footer-bottom"><p>© 2025 LearnSphere. All rights reserved.</p></div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
