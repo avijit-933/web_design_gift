@@ -606,11 +606,11 @@
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="courses.html">Courses</a></li>
+      <li><a href={% url 'courses'%}>Courses</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="help.html">Help</a></li>
+      <li><a href={% url 'help'%}>Help</a></li>
       <li><a href={% url 'login'%} class="btn-outline-nav">Login</a></li>
-      <li><a href="register.html" class="btn-primary-nav">Sign Up</a></li>
+      <li><a href={% url 'login'%} class="btn-primary-nav">Sign Up</a></li>
     </ul>
     <div class="nav-actions">
       <button class="theme-toggle" id="themeToggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>

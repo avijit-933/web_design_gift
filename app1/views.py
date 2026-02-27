@@ -12,7 +12,9 @@ def student_dashboard(request):
     return render(request, 'student_dashboard.html')
 def courses(request):
     return render(request, 'courses.html')
-def couse_list(request):
-    return render(request,'couse_list.html')
+def course_details(request):
+    return render(request,'course_details.html')
 def admin1(request):
     return render(request,'admin1.html')
+def help(request):
+    return render(request,'help.html')

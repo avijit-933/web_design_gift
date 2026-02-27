@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Help & Support — LearnSphere</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="page-help">
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><span class="logo-icon"><i class="fas fa-brain"></i></span><span>Learn<strong>Sphere</strong></span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="help.html" class="active">Help</a></li>
+      <li><a href="login.html" class="btn-outline-nav">Login</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero-mini">
+  <div class="container">
+    <h1>Help & <span class="gradient-text">Support</span></h1>
+    <p>We're here to help you succeed. Find answers, contact us, or chat with Aria.</p>
+    <div class="help-search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" id="faqSearch" placeholder="Search FAQ..."/>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="help-layout">
+      <div class="help-main">
+        <div class="content-section">
+          <h2>Frequently Asked Questions</h2>
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <button class="accordion-header"><span>How do I enroll in a course?</span><i class="fas fa-chevron-down"></i></button>
+              <div class="accordion-body"><p>Browse our course catalog, click on any course you're interested in, then click the "Enroll Now" or "Start Learning" button. You'll need a free account to enroll. Some courses are completely free while others require purchase.</p></div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header"><span>Can I access courses on mobile devices?</span><i class="fas fa-chevron-down"></i></button>
+              <div class="accordion-body"><p>Yes! LearnSphere is fully responsive and works on all devices — desktop, tablet, and mobile. You can learn anywhere, anytime, even offline by downloading lessons.</p></div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header"><span>What is the AI chatbot and how does it help?</span><i class="fas fa-chevron-down"></i></button>
+              <div class="accordion-body"><p>Our AI assistant Aria is available 24/7 to help you with course questions, explain concepts, recommend learning paths, and navigate the platform. Just click the chat icon in the bottom right corner to start a conversation.</p></div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header"><span>How do I get my certificate after completing a course?</span><i class="fas fa-chevron-down"></i></button>
+              <div class="accordion-body"><p>Once you complete all lessons and pass the final assessment with a score of 70% or higher, your certificate is automatically generated. You can download it from your dashboard under "My Certificates" or from the completed course page.</p></div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header"><span>Can I become an instructor on LearnSphere?</span><i class="fas fa-chevron-down"></i></button>
+              <div class="accordion-body"><p>Absolutely! Register for a free account, go to your profile settings, and switch to "Instructor" mode. You can then create and publish courses. All courses go through a brief quality review before going live.</p></div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header"><span>What payment methods are accepted?</span><i class="fas fa-chevron-down"></i></button>
+              <div class="accordion-body"><p>We accept all major credit/debit cards (Visa, Mastercard, Amex), PayPal, and many regional payment methods. All payments are securely processed via Stripe with 256-bit SSL encryption.</p></div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header"><span>Is there a refund policy?</span><i class="fas fa-chevron-down"></i></button>
+              <div class="accordion-body"><p>Yes! We offer a 30-day money-back guarantee on all paid courses. If you're not satisfied for any reason, contact our support team and we'll process a full refund within 3-5 business days.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="help-sidebar">
+        <div class="help-contact-card glass-card">
+          <h3>Still need help?</h3>
+          <p>Our support team is available Mon–Fri, 9am–6pm EST</p>
+          <div class="contact-options">
+            <a href="mailto:hello@learnsphere.ai" class="contact-opt"><i class="fas fa-envelope"></i><div><strong>Email Support</strong><small>hello@learnsphere.ai</small></div></a>
+            <a href="#" class="contact-opt" onclick="document.getElementById('chatbotToggle').click(); return false;"><i class="fas fa-robot"></i><div><strong>Chat with Aria</strong><small>AI assistant, 24/7</small></div></a>
+            <a href="#" class="contact-opt"><i class="fas fa-phone"></i><div><strong>Call Us</strong><small>+1 (800) 555-0199</small></div></a>
+          </div>
+        </div>
+
+        <div class="help-form-card glass-card">
+          <h3>Contact Form</h3>
+          <form id="contactForm" class="auth-form">
+            <div class="form-group"><label>Your Name</label><div class="input-wrapper"><i class="fas fa-user"></i><input type="text" placeholder="Jane Smith"/></div></div>
+            <div class="form-group"><label>Email</label><div class="input-wrapper"><i class="fas fa-envelope"></i><input type="email" placeholder="you@example.com"/></div></div>
+            <div class="form-group"><label>Subject</label><div class="input-wrapper"><i class="fas fa-tag"></i><input type="text" placeholder="Course access issue..."/></div></div>
+            <div class="form-group"><label>Message</label><textarea rows="4" placeholder="Describe your issue in detail..."></textarea></div>
+            <button type="submit" class="btn btn-primary full-width">Send Message <i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo"><span class="logo-icon"><i class="fas fa-brain"></i></span><span>Learn<strong>Sphere</strong></span></a>
+      <p>AI-powered learning for the future.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul><li><a href="help.html">Help Center</a></li><li><a href="#">Status</a></li><li><a href="#">Contact</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 LearnSphere. All rights reserved.</p></div>
+</footer>
+
+<!-- Chatbot -->
+<div class="chatbot-container" id="chatbot">
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div class="chatbot-info"><div class="bot-avatar"><i class="fas fa-robot"></i></div><div><strong>Aria</strong><small>AI Learning Assistant</small></div></div>
+      <button class="chatbot-close" id="closeChatbot"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="msg bot-msg"><div class="msg-bubble">Hello! I'm Aria, your AI support assistant. How can I help you today? 🙋</div></div>
+    </div>
+    <div class="chatbot-suggestions" id="chatSuggestions">
+      <button class="suggestion-btn" data-q="How do I reset my password?">🔒 Reset password</button>
+      <button class="suggestion-btn" data-q="How do I get a refund?">💰 Get a refund</button>
+      <button class="suggestion-btn" data-q="How do I download my certificate?">📜 Download certificate</button>
+    </div>
+    <div class="chatbot-input-area">
+      <input type="text" id="chatInput" placeholder="Ask Aria anything..."/>
+      <button id="sendChat"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+  <button class="chatbot-toggle" id="chatbotToggle">
+    <i class="fas fa-robot" id="chatIconOpen"></i>
+    <i class="fas fa-times" id="chatIconClose" style="display:none"></i>
+    <span class="chat-badge">!</span>
+  </button>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
